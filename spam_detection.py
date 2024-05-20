@@ -151,7 +151,6 @@ plt.xlabel('Predicted', fontsize=13)
 plt.title('Logistic Regression Confusion Matrix', fontsize=15)
 plt.tight_layout()
 plt.show()
-plt.savefig('Logistic Regression Confusion Matrix.png')
 
 # Generate decision tree visualization
 dot_data = tree.export_graphviz(tree_model, feature_names=vectorizer.get_feature_names_out(),
@@ -181,22 +180,3 @@ if log_prob == "spam":
 else:
     print("The new email is classified by logistics regression as not spam.")
 
-# Reproduce the scatter plot
-
-N = 1500
-
-mean1 = [6, 14]
-mean2 = [10, 6]
-mean3 = [14, 14]
-cov = [[3.5, 0], [0, 3.5]]  # diagonal covariance
-
-np.random.seed(50)
-X1 = np.random.multivariate_normal(mean1, cov, int(N/6))
-X1 = np.concatenate((X1, np.random.multivariate_normal(mean2, cov, int(N/6))))
-X1 = np.concatenate((X1, np.random.multivariate_normal(mean3, cov, int(N/6))))
-X1 = np.concatenate((X1, 20 * np.random.rand(int(N/2), 2)))
-Y1 = np.concatenate((np.ones(int(N/2)), np.zeros(int(N/2))))
-
-plt.figure(figsize=(10, 6))
-plt.plot(X1[:int(N/2), 0], X1[:int(N/2), 1], 'r+', X1[int(N/2):, 0], X1[int(N/2):, 1], 'k.', ms=4)
-plt.show()
